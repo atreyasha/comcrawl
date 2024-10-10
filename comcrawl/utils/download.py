@@ -40,6 +40,8 @@ def download_single_result(result: Result) -> Result:
     unzipped_file = gzip.GzipFile(fileobj=zipped_file)
 
     raw_data: bytes = unzipped_file.read()
+    result["bytes"] = raw_data
+
     try:
         data: str = raw_data.decode("utf-8")
     except UnicodeDecodeError:
